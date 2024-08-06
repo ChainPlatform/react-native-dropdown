@@ -1,0 +1,30 @@
+{
+    "name": "@chainplatform/dropdown",
+    "version": "0.1.0",
+    "description": "@chainplatform/dropdown is a React Native library that provides a Dropdown component for react-native and react-native-web.",
+    "main": "index.js",
+    "devDependencies": {
+        "react": "*",
+        "react-native": "*"
+    },
+    "author": "Chain Platform <santran686@gmail.com> (https://chainplatform.net/)",
+    "license": "MIT",
+    "keywords": [
+        "react",
+        "react-native",
+        "react-native-web",
+        "@chainplatform/dropdown"
+    ],
+    "homepage": "https://github.com/ChainPlatform/react-native-dropdown",
+    "bugs": "https://github.com/ChainPlatform/react-native-dropdown/issues",
+    "repository": {
+        "type": "git",
+        "url": "git://github.com/ChainPlatform/react-native-dropdown.git"
+    },
+    "dependencies": {},
+    "peerDependencies": {
+        "react": "*",
+        "react-native": "*",
+        "react-native-svg": "*"
+    }
+}
