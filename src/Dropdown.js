@@ -1,7 +1,7 @@
 import { useImperativeHandle, useState, useRef, forwardRef } from 'react';
 import { Pressable, StyleSheet, Text, View, Modal, FlatList } from 'react-native';
 import ChevronDownSVG from './ChevronDownSVG';
-import ChevronUpSVG from './icons/ChevronUpSVG';
+import ChevronUpSVG from './ChevronUpSVG';
 
 const Dropdown = (props, ref) => {
 
