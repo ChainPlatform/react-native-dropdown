@@ -43,8 +43,12 @@ const Dropdown = (props, ref) => {
             style={[styles.item,
             typeof props.itemStyle != "undefined" ? props.itemStyle : {},
             {
-                backgroundColor: ((typeof selectedItem != 'undefined' && selectedItem.value == item.value) || (props.data != null && props.data.length > 0 && typeof props.data[props.defaultIndex] != 'undefined' && props.data[props.defaultIndex].value == item.value)) ? 'rgb(221, 221, 221)' : "#FFFFFF",
-
+                backgroundColor:
+                    (
+                        (typeof selectedItem != 'undefined' && selectedItem != null && selectedItem.value == item.value)
+                        ||
+                        (typeof selectedItem == "undefined" && props.defaultIndex === index)
+                    ) ? 'rgb(221, 221, 221)' : "#FFFFFF",
             },
             index == props.data.length - 1 ? { borderBottomWidth: 0 } : {}]}
             onPress={() => onItemPress(index, item)}>
@@ -87,7 +91,7 @@ const Dropdown = (props, ref) => {
         );
     };
 
-    if (typeof selectedItem != 'undefined') {
+    if (typeof selectedItem != 'undefined' && selectedItem != null) {
         defaultLabel = selectedItem.label;
     } else if (props.data != null && props.data.length > 0 && typeof props.data[props.defaultIndex] != 'undefined') {
         defaultLabel = props.data[props.defaultIndex].label;
