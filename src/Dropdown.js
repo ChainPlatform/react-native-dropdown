@@ -27,9 +27,10 @@ const Dropdown = (props, ref) => {
 
     const openDropdown = () => {
         DropdownButton.current.measure((_fx, _fy, _w, h, _px, py) => {
+            const borderWidth = typeof props.dropdownContainerStyle != "undefined" && typeof props.dropdownContainerStyle.borderWidth != "undefined" ? props.dropdownContainerStyle.borderWidth : 1;
             setDropdownWidth(_w)
-            setDropdownTop(py + h);
-            setDropdownLeft(_px);
+            setDropdownTop(py + h - borderWidth);
+            setDropdownLeft(_px - borderWidth);
             setVisible(true);
         });
     };
