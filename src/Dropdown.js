@@ -15,6 +15,7 @@ const Dropdown = (props, ref) => {
     const [selectedItem, setSelected] = useState(undefined);
     const [dropdownTop, setDropdownTop] = useState(0);
     const [dropdownLeft, setDropdownLeft] = useState(0);
+    const [dropdownWidth, setDropdownWidth] = useState(0);
 
     const setIndex = (item) => {
         setSelected(item);
@@ -26,6 +27,7 @@ const Dropdown = (props, ref) => {
 
     const openDropdown = () => {
         DropdownButton.current.measure((_fx, _fy, _w, h, _px, py) => {
+            setDropdownWidth(_w)
             setDropdownTop(py + h);
             setDropdownLeft(_px);
             setVisible(true);
@@ -80,6 +82,7 @@ const Dropdown = (props, ref) => {
                                 overflow: "hidden"
                             },
                             typeof props.dropdownContainerStyle != "undefined" ? props.dropdownContainerStyle : {},
+                            typeof props.dropdownContainerStyle != "undefined" && typeof props.dropdownContainerStyle.width == "undefined" ? { width: dropdownWidth } : {},
                             visible ? { borderTopLeftRadius: 0, borderTopRightRadius: 0, borderTopWidth: 0 } : {}
                         ]}
                         data={props.data}
