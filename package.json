@@ -1,6 +1,6 @@
 {
     "name": "@chainplatform/dropdown",
-    "version": "0.1.4",
+    "version": "0.1.14",
     "description": "@chainplatform/dropdown is a React Native library that provides a Dropdown component for react-native and react-native-web.",
     "main": "index.js",
     "devDependencies": {

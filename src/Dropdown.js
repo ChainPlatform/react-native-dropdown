@@ -28,7 +28,8 @@ const Dropdown = (props, ref) => {
     const openDropdown = () => {
         DropdownButton.current.measure((_fx, _fy, _w, h, _px, py) => {
             const borderWidth = typeof props.dropdownContainerStyle != "undefined" && typeof props.dropdownContainerStyle.borderWidth != "undefined" ? props.dropdownContainerStyle.borderWidth : 1;
-            setDropdownWidth(_w)
+            const calWidth = props.dropdownContainerStyle != "undefined" && typeof props.dropdownContainerStyle.width != "undefined" ? props.dropdownContainerStyle.width : _w;
+            setDropdownWidth(calWidth);
             setDropdownTop(py + h - borderWidth);
             setDropdownLeft(_px - borderWidth);
             setVisible(true);
@@ -80,10 +81,11 @@ const Dropdown = (props, ref) => {
                                 borderRadius: 4,
                                 borderColor: 'rgb(221, 221, 221)',
                                 borderWidth: 1,
-                                overflow: "hidden"
+                                overflow: "hidden",
+                                maxWidth: dropdownWidth,
+                                width: dropdownWidth
                             },
                             typeof props.dropdownContainerStyle != "undefined" ? props.dropdownContainerStyle : {},
-                            typeof props.dropdownContainerStyle != "undefined" && typeof props.dropdownContainerStyle.width == "undefined" ? { width: dropdownWidth } : {},
                             visible ? { borderTopLeftRadius: 0, borderTopRightRadius: 0, borderTopWidth: 0 } : {}
                         ]}
                         data={props.data}
@@ -105,40 +107,37 @@ const Dropdown = (props, ref) => {
     if (visible) {
         Chevron = ChevronDownSVG;
     }
-    return (
-        <Pressable
-            ref={DropdownButton}
-            activeOpacity={1}
-            style={[
-                styles.button,
-                typeof props.containerStyle != "undefined" ? props.containerStyle : {},
-                visible ? { borderBottomLeftRadius: 0, borderBottomRightRadius: 0 } : {}
-            ]}
-            onPress={toggleDropdown}>
-            {renderDropdown()}
-            <View style={[{ flex: 1 }]}>
-                <Text style={[
-                    styles.buttonText,
-                    typeof props.textStyle != "undefined" ? props.textStyle : {}
-                ]}>{defaultLabel}</Text>
-            </View>
-            <View style={[
-                {
-                    marginRight: 8,
-                    justifyContent: 'center',
-                    alignItems: 'center',
-                    width: 20,
-                    height: 20
-                },
-                typeof props.stickerStyle != "undefined" ? props.stickerStyle : {}
-            ]}>
-                <Chevron
-                    width={typeof props.stickerStyle != "undefined" && typeof props.stickerStyle.width != "undefined" ? props.stickerStyle.width : 20}
-                    color={typeof props.stickerStyle != "undefined" ? props.stickerStyle.color : 'rgb(221, 221, 221)'}
-                />
-            </View>
-        </Pressable>
-    );
+    return (<><Pressable
+        ref={DropdownButton}
+        activeOpacity={1}
+        style={[
+            styles.button,
+            typeof props.containerStyle != "undefined" ? props.containerStyle : {},
+            visible ? { borderBottomLeftRadius: 0, borderBottomRightRadius: 0 } : {}
+        ]}
+        onPress={toggleDropdown}>
+        <View style={[{ flex: 1 }]}>
+            <Text style={[
+                styles.buttonText,
+                typeof props.textStyle != "undefined" ? props.textStyle : {}
+            ]}>{defaultLabel}</Text>
+        </View>
+        <View style={[
+            {
+                marginRight: 8,
+                justifyContent: 'center',
+                alignItems: 'center',
+                width: 20,
+                height: 20
+            },
+            typeof props.stickerStyle != "undefined" ? props.stickerStyle : {}
+        ]}>
+            <Chevron
+                width={typeof props.stickerStyle != "undefined" && typeof props.stickerStyle.width != "undefined" ? props.stickerStyle.width : 20}
+                color={typeof props.stickerStyle != "undefined" ? props.stickerStyle.color : 'rgb(221, 221, 221)'}
+            />
+        </View>
+    </Pressable>{renderDropdown()}</>);
 }
 
 const styles = StyleSheet.create({
@@ -157,7 +156,8 @@ const styles = StyleSheet.create({
         width: '100%',
         borderRadius: 4,
         borderColor: 'rgb(221, 221, 221)',
-        borderWidth: 1
+        borderWidth: 1,
+        orverflow: "hidden"
     },
     buttonText: {
         fontSize: 13,
