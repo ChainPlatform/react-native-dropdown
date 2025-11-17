@@ -31,7 +31,7 @@ const Dropdown = (props, ref) => {
             const calWidth = props.dropdownContainerStyle != "undefined" && typeof props.dropdownContainerStyle.width != "undefined" ? props.dropdownContainerStyle.width : _w;
             setDropdownWidth(calWidth);
             setDropdownTop(py + h - borderWidth);
-            setDropdownLeft(_px - borderWidth);
+            setDropdownLeft(_px);
             setVisible(true);
         });
     };
