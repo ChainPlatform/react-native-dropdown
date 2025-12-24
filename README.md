@@ -63,6 +63,7 @@ class App extends React.Component {
       <View style={{flex:1}}>
             <Dropdown
                             ref={this.exchangeRef}
+                            disabled={false}
                             placeholder={"search"}
                             containerStyle={{
                                 width: "100%",
