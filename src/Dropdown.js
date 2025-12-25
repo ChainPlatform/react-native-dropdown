@@ -86,7 +86,7 @@ const Dropdown = (props, ref) => {
             }
         } else {
             if (data[defaultIndex]) {
-                setSelected(data[defaultIndex]);
+                setSelected(prev => prev ?? data[defaultIndex]);
             } else {
                 setSelected(undefined);
             }
@@ -217,7 +217,7 @@ const Dropdown = (props, ref) => {
         const isSelected = multiple
             ? selectedItems.some(x => x[keyField] === item[keyField])
             : selectedItem?.[keyField] === item?.[keyField] ||
-            (selectedItem == null && defaultIndex === index);
+            (selectedItem == null && defaultIndex === index && !multiple);
 
         return (
             <Pressable
